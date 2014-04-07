@@ -91,6 +91,24 @@ public class Calculator extends JFrame implements ActionListener {
 			}
 		});
 		
+		jminus.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				jresult.setText(number + " - ");
+				sum1 = Double.parseDouble(number);
+				number = "";
+				
+				jequal.addActionListener(new ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent e){
+						sum1 = sum1 - Double.parseDouble(number);
+						number = "";
+						jresult.setText(sum1 + "");
+					}			
+				});
+			}			
+		});
+		
 		jac.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
