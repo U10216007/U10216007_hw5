@@ -24,6 +24,7 @@ public class Calculator extends JFrame implements ActionListener {
 	private JButton jequal = new JButton("=");
 	private String number = "";
 	private JButton jac = new JButton("AC");
+	private double sum1 = 0;
 	
 	public Calculator(){
 		
@@ -72,7 +73,50 @@ public class Calculator extends JFrame implements ActionListener {
 		jmutlity.addActionListener(this);
 		jdivide.addActionListener(this);
 		
+		jplus.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				jresult.setText(number + " + ");
+				sum1 = sum1 + Double.parseDouble(number);
+				number = "";
+						
+				jequal.addActionListener(new ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent e){
+						sum1 = sum1 + Double.parseDouble(number);
+						number = "";
+						jresult.setText(sum1 + "");
+					}
+				});
+			}
+		});
+		
+		jac.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				number = "";
+				sum1 = 0;
+				jresult.setText(number);
+			}			
+		});
+		
+	
+	
+	
+	
+	
+	
+	
+	
 	}
+		
+	
+	
+	
+	
+	
+	
+	
 	
 	
 		public void actionPerformed(ActionEvent e){
@@ -110,7 +154,6 @@ public class Calculator extends JFrame implements ActionListener {
 				number = number + ".";
 				jresult.setText(number);	
 			}
-				
 		}
 
 		
@@ -152,26 +195,24 @@ class Passwords extends JFrame implements ActionListener{
 	add(jpass);
 	add(jenter);
 	add(jwrong);
+	
 	jenter.addActionListener(this);
-	
-	
-	
-		jenter.addActionListener(new ActionListener(){
-		@Override
-			public void actionPerformed(ActionEvent e){
-				if(jpass.getText() .equals(passwords)){
-					Calculator frame = new Calculator();
-					frame.setTitle("Calculator");
-					frame.setSize(200,200);
-					frame.setLocationRelativeTo(null);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setVisible(true);
-				}else{
-					jwrong.setText("wrong");
-				}
+	}
+		
+		public void actionPerformed(ActionEvent e){
+			if(jpass.getText() .equals(passwords)){
+				Calculator frame = new Calculator();
+				frame.setTitle("Calculator");
+				frame.setSize(200,200);
+				frame.setLocationRelativeTo(null);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+			}else{
+				jwrong.setText("wrong");
 			}
-		});
-	}	
+			
+		}
+		
 }	
 
 
