@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Calculator extends JFrame {
+public class Calculator extends JFrame implements ActionListener {
 	
 	private JTextField jresult = new JTextField(10);
 	private JButton jone = new JButton("1");
@@ -23,13 +23,16 @@ public class Calculator extends JFrame {
 	private JButton jdot = new JButton(".");
 	private JButton jequal = new JButton("=");
 	private String number = "";
+	private JButton jac = new JButton("AC");
 	
 	public Calculator(){
 		
 		
 	
 		JPanel p1 = new JPanel();
+		p1.setLayout(new GridLayout(1,0,0,0));
 		p1.add(jresult);
+		p1.add(jac);
 		add(p1,BorderLayout.NORTH);
 		
 		JPanel p2 = new JPanel();
@@ -53,21 +56,25 @@ public class Calculator extends JFrame {
 		
 		add(p2,BorderLayout.CENTER);
 		
-		jone.addActionListener(new ButtonListner());
-		jtwo.addActionListener(new ButtonListner());
-		jthree.addActionListener(new ButtonListner());
-		jfour.addActionListener(new ButtonListner());
-		jfive.addActionListener(new ButtonListner());
-		jsix.addActionListener(new ButtonListner());
-		jseven.addActionListener(new ButtonListner());
-		jeight.addActionListener(new ButtonListner());
-		jnine.addActionListener(new ButtonListner());
-		jzero.addActionListener(new ButtonListner());
-		jdot.addActionListener(new ButtonListner());
+		jone.addActionListener(this);
+		jtwo.addActionListener(this);
+		jthree.addActionListener(this);
+		jfour.addActionListener(this);
+		jfive.addActionListener(this);
+		jsix.addActionListener(this);
+		jseven.addActionListener(this);
+		jeight.addActionListener(this);
+		jnine.addActionListener(this);
+		jzero.addActionListener(this);
+		jdot.addActionListener(this);
+		jplus.addActionListener(this);
+		jminus.addActionListener(this);
+		jmutlity.addActionListener(this);
+		jdivide.addActionListener(this);
 		
 	}
 	
-	class ButtonListner implements ActionListener{
+	
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource() == jone){
 				number = number + "1";
@@ -102,14 +109,11 @@ public class Calculator extends JFrame {
 			}else if(e.getSource() == jdot){
 				number = number + ".";
 				jresult.setText(number);	
-				
-				
 			}
+				
 		}
+
 		
-	}
-	
-	
 	
 	
 	
@@ -118,12 +122,12 @@ public class Calculator extends JFrame {
 	
 	public static void main(String[] args){
 		
-		Calculator frame = new Calculator();
-		frame.setTitle("Calculator");
-		frame.setSize(200,200);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		Passwords frame2 = new Passwords();
+		frame2.setSize(200,125);
+		frame2.setVisible(true);
+		frame2.setTitle("Passwords");
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.setLocationRelativeTo(null);	
 		
 		
 	}
@@ -134,6 +138,41 @@ public class Calculator extends JFrame {
 
 
 
+class Passwords extends JFrame implements ActionListener{
+	
+	
+	private JTextField jpass = new JTextField(10);
+	private JButton jenter = new JButton("Enter");
+	private String passwords = "0000";
+	private JLabel jwrong = new JLabel();
+	
+	public Passwords(){
+	
+	setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
+	add(jpass);
+	add(jenter);
+	add(jwrong);
+	jenter.addActionListener(this);
+	
+	
+	
+		jenter.addActionListener(new ActionListener(){
+		@Override
+			public void actionPerformed(ActionEvent e){
+				if(jpass.getText() .equals(passwords)){
+					Calculator frame = new Calculator();
+					frame.setTitle("Calculator");
+					frame.setSize(200,200);
+					frame.setLocationRelativeTo(null);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setVisible(true);
+				}else{
+					jwrong.setText("wrong");
+				}
+			}
+		});
+	}	
+}	
 
 
 
