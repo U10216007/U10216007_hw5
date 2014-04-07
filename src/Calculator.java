@@ -25,6 +25,7 @@ public class Calculator extends JFrame implements ActionListener {
 	private String number = "";
 	private JButton jac = new JButton("AC");
 	private double sum1 = 0;
+	private double sum2 = 1;
 	
 	public Calculator(){
 		
@@ -104,6 +105,24 @@ public class Calculator extends JFrame implements ActionListener {
 						sum1 = sum1 - Double.parseDouble(number);
 						number = "";
 						jresult.setText(sum1 + "");
+					}			
+				});
+			}			
+		});
+		
+		jmutlity.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				jresult.setText(number + " * ");
+				sum2 = sum2 * Double.parseDouble(number);
+				number = "";
+						
+				jequal.addActionListener(new ActionListener(){
+					@Override
+					public void actionPerformed(ActionEvent e){
+						sum2 = sum2 * Double.parseDouble(number);
+						number = "";
+						jresult.setText(sum2 + "");
 					}			
 				});
 			}			
